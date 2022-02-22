@@ -1,16 +1,30 @@
-import { Stack, StackProps } from 'aws-cdk-lib';
+import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import * as cognito from 'aws-cdk-lib/aws-cognito';
 
 export class ServerlessKanbanBackendStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
+    const userPool = new cognito.UserPool(this, 'ServerlessKanbanUserPool', {
+      signInAliases: {
+        email: true,
+        username: true,
+      },
+      selfSignUpEnabled: true,
+      userVerification: {
+        emailStyle: cognito.VerificationEmailStyle.CODE,
+      },
+      // TODO: Add SES email
+    });
+    const client = userPool.addClient('ServerlessKanbanWebClient');
 
-    // example resource
-    // const queue = new sqs.Queue(this, 'ServerlessKanbanBackendQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    new CfnOutput(this, 'userPoolId', {
+      value: userPool.userPoolId,
+    })
+
+    new CfnOutput(this, 'userPoolClientId', {
+      value: client.userPoolClientId,
+    })
   }
 }
