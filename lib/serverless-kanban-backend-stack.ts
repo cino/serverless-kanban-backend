@@ -21,10 +21,10 @@ export class ServerlessKanbanBackendStack extends Stack {
 
     new CfnOutput(this, 'userPoolId', {
       value: userPool.userPoolId,
-    })
+    });
 
     new CfnOutput(this, 'userPoolClientId', {
       value: client.userPoolClientId,
-    })
+    });
   }
 }

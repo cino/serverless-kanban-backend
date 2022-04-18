@@ -5,7 +5,7 @@
     "lib": [
       "es2018"
     ],
-    "declaration": true,
+    "declaration": false,
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -18,13 +18,14 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "experimentalDecorators": true,
-    "strictPropertyInitialization": false,
+    "strictPropertyInitialization": true,
     "typeRoots": [
       "./node_modules/@types"
-    ]
+    ],
+    "outDir": "dist"
   },
   "exclude": [
     "node_modules",
-    "cdk.out"
-  ]
+    "cdk.out",
+  ],
 }
