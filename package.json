@@ -6,16 +6,23 @@
   },
   "scripts": {
     "build": "tsc",
+    "lint": "eslint lib/**/*.ts test/**/*.ts",
     "watch": "tsc -w",
     "test": "jest",
+    "test:watch": "jest --watch --no-coverage",
     "cdk": "cdk"
   },
   "devDependencies": {
     "@types/jest": "^26.0.10",
     "@types/node": "10.17.27",
+    "aws-cdk": "2.13.0",
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.1.4",
     "jest": "^26.4.2",
     "ts-jest": "^26.2.0",
-    "aws-cdk": "2.13.0",
     "ts-node": "^9.0.0",
     "typescript": "~3.9.7"
   },
