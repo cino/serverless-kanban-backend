@@ -1,7 +1,6 @@
 import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import * as cognito from 'aws-cdk-lib/aws-cognito';
-import { BooleanAttribute, Mfa, UserPoolEmail } from 'aws-cdk-lib/aws-cognito';
+import { BooleanAttribute, Mfa, UserPoolEmail, UserPool } from 'aws-cdk-lib/aws-cognito';
 import { VerifySesDomain } from '@seeebiii/ses-verify-identities';
 
 interface ServerlessKanbanStackProps extends StackProps {
@@ -19,7 +18,7 @@ export class ServerlessKanbanBackendStack extends Stack {
       addMxRecord: false,
     });
 
-    const userPool = new cognito.UserPool(this, 'ServerlessKanbanUserPool', {
+    const userPool = new UserPool(this, 'ServerlessKanbanUserPool', {
       signInAliases: {
         email: true,
         username: true,
